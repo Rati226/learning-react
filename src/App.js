@@ -1,23 +1,27 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+// import ConditionalStat from './Components/ConditionalStat';
+
 import './App.css';
+import TodoList from './Components/TodoList';
+import TodoUser from './Components/TodoUser';
+
 
 function App() {
+
+  const [userList , setUser] = useState('');
+
+  const handleButton = (user) =>{
+    setUser((prevUser)=> {
+      return [...prevUser, {name : user}]
+    });
+
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <TodoUser addUser={handleButton}/>
+      <TodoList  user = {userList}/>
+      
     </div>
   );
 }
