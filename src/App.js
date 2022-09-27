@@ -1,27 +1,27 @@
 import React, { useState } from 'react';
-// import ConditionalStat from './Components/ConditionalStat';
+
 
 import './App.css';
 import TodoList from './Components/TodoList';
 import TodoUser from './Components/TodoUser';
 
 
+
 function App() {
 
-  const [userList , setUser] = useState('');
+ const [item,setItems] = useState([]);
 
-  const handleButton = (user) =>{
-    setUser((prevUser)=> {
-      return [...prevUser, {name : user}]
-    });
-
-  }
-
+ const handleChange = (user)=>{
+  setItems((prevUser)=>{
+    return [...prevUser,{name:user, id:Math.random().toString()}]
+  })
+ }
   return (
     <div className="App">
-      <TodoUser addUser={handleButton}/>
-      <TodoList  user = {userList}/>
-      
+     <TodoUser adduserHandle = {handleChange}/>
+    <TodoList items = {item}/>
+
+
     </div>
   );
 }
