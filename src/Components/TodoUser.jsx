@@ -1,41 +1,34 @@
-import { useState } from 'react';
 
-function TodoUser(props) {
+import React, { useState } from 'react'
+
+const TodoUser =(props) => {
     console.log(props);
-  const [user, setUser] = useState(' ');
-  const [items, setItems] = useState([]);
 
-  const handleButton = (e) => {
-    e.preventDefault();
-    console.log(user,setUser);
+const [user , setUser] = useState("");
+const [items , setItems] = useState([]);
 
-    props.addUser(items, setItems);
-    if (!user) {
-    } else {
-      setItems([...items, user]);
-      setUser('');
-    }
-
-  };
-
+const handleChange = (e) =>{
+     e.preventDefault();
+     props.adduserHandle(user,setUser);
+     if(!user)
+     return ;
+   
+    else{
+    setItems([...items , user]);   
+     }
+     setUser('');
+}
 
   return (
     <>
-      <div>
-        <form onSubmit={handleButton}>
-          <input
-            type="text"
-            value={user}
-            name='add'
-            onChange={(e) => setUser(e.target.value)}
-          />
-          <button>submit</button>
-        </form>
-      </div>
-
-      
+        <div>
+            <form onSubmit={handleChange}>
+                <input type='text' name='user' value={user} onChange={(e)=>setUser(e.target.value)} />
+                <button>Submit</button>
+            </form>
+        </div>
     </>
-  );
+  )
 }
 
 export default TodoUser;
