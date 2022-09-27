@@ -1,18 +1,11 @@
 import React from 'react'
 
-function TodoList(props) {
+const  TodoList = (props) => {
   return (
-    <div>
-        { props.user.map((ele, index) => {
-            return (
-                <h3>{props.user}</h3>
-            )
-            }  
-             
-        )}
-      
-     </div>
-  );
+   <ul>
+    {props.items.map((user,index) => ( <li key = {user.id}>{ user.name}</li>))}
+   </ul>
+  )
 }
 
-export default TodoList
+export default TodoList;
